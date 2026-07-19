@@ -1,0 +1,34 @@
+/*
+ * Datum design tokens.
+ * Instrument / Swiss, light. One accent (oxblood), no color beyond ink shades.
+ */
+:root {
+  /* Surfaces */
+  --paper: #ece8de; /* warm bone — the working surface */
+  --paper-edge: #d9d4c7; /* page gutter behind the frame */
+
+  /* Ink scale */
+  --ink: #191b1e; /* primary text / hero numbers */
+  --ink-2: #63655e; /* secondary text / values */
+  --ink-3: #9a998c; /* muted labels / tick rulers */
+
+  /* Rules */
+  --hairline: #cbc6b8; /* 1px separators */
+  --rule-strong: rgba(25, 27, 30, 0.35); /* emphasised rule (totals) */
+
+  /* The single accent */
+  --accent: #9e3b2e; /* oxblood — ruler marker, one index, one alarming value */
+
+  /* Composition-bar ink shades (never a colored series) */
+  --bar-a: #3a3c3b;
+  --bar-b: #7c7e77;
+
+  /* Type stacks */
+  --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Layout */
+  --frame-width: 1440px;
+  --frame-pad: 48px;
+}

@@ -1,0 +1,50 @@
+.nav {
+  display: flex;
+  gap: 42px;
+  padding: 16px 0 14px;
+  flex-wrap: wrap;
+}
+
+.item {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  text-decoration: none;
+  padding: 2px 0 8px;
+  position: relative;
+}
+
+.idx {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
+.item:hover .label {
+  color: var(--ink-2);
+}
+
+.active .idx {
+  color: var(--accent);
+}
+.active .label {
+  color: var(--ink);
+}
+.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 26px;
+  height: 2px;
+  background: var(--accent);
+}

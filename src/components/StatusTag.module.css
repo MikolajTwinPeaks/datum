@@ -1,0 +1,25 @@
+.tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.tick {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 9px;
+}
+
+.ok {
+  color: var(--ink-2);
+}
+.warn {
+  color: var(--ink-2);
+}
+.alarm {
+  color: var(--accent);
+}
+.readonly {
+  color: var(--ink-3);
+}

@@ -1,0 +1,28 @@
+.wrap {
+  padding-top: 18px;
+}
+
+.value {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 40px;
+  letter-spacing: -0.02em;
+}
+
+.value :global(.accent) {
+  font-weight: 400;
+}
+
+.rulerSlot {
+  margin-top: 14px;
+}
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.1em;
+  margin-top: 6px;
+}

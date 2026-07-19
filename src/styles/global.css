@@ -1,0 +1,202 @@
+/*
+ * Datum — global reset, base typography and shared "design-system" primitives.
+ * Component-specific structure lives in each component's *.module.css.
+ * Fonts are imported (self-hosted, via @fontsource) in src/main.tsx.
+ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--paper-edge);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Content frame — 1440-optimised, degrades to full width on narrower screens */
+.frame {
+  width: 100%;
+  max-width: var(--frame-width);
+  margin: 0 auto;
+  background: var(--paper);
+  min-height: 100vh;
+  padding: 0 var(--frame-pad);
+}
+
+@media (max-width: 1100px) {
+  .frame {
+    --frame-pad: 28px;
+  }
+}
+
+main {
+  display: block;
+  padding: 0 0 60px;
+}
+
+/* ---- Type helpers ---- */
+.grotesk {
+  font-family: var(--font-display);
+  font-weight: 300;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+}
+.accent {
+  color: var(--accent);
+}
+.i2 {
+  color: var(--ink-2);
+}
+.i3 {
+  color: var(--ink-3);
+}
+.tab {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Rules ---- */
+.rule {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  width: 100%;
+}
+.rule-ink {
+  border: 0;
+  border-top: 1px solid var(--rule-strong);
+  width: 100%;
+}
+
+/* ---- Page primitives shared by views ---- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.view-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 44px;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  margin-top: 8px;
+}
+
+.sec {
+  margin-top: 56px;
+}
+
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  gap: 16px;
+}
+
+.sec-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.sec-idx {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-3);
+}
+.sec-idx b {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.sec-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* Two-column layout used by Asset and Arbitrage */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+
+@media (max-width: 900px) {
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Underlined text link (never a filled button) */
+.textlink {
+  display: inline-block;
+  margin-top: 30px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--ink);
+  text-decoration: none;
+  border: 0;
+  background: none;
+  border-bottom: 1.5px solid var(--accent);
+  padding: 0 0 3px;
+  cursor: pointer;
+}
+.textlink:hover {
+  color: var(--accent);
+}
+
+.link-inline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  text-decoration: none;
+  border: 0;
+  background: none;
+  border-bottom: 1px solid var(--accent);
+  padding: 0 0 2px;
+  cursor: pointer;
+}
+.link-inline + .link-inline {
+  margin-left: 16px;
+}
+.link-inline:hover {
+  color: var(--accent);
+}
+
+/* Hour axis under the arbitrage charts */
+.chart-hours {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}

@@ -1,0 +1,208 @@
+.view {
+  padding-top: 40px;
+}
+
+/* ---- Income statement ledger (Asset) ---- */
+.income {
+  max-width: 760px;
+  margin-top: 22px;
+}
+
+.incRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-top: 1px solid var(--hairline);
+  gap: 16px;
+}
+
+.incHead {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-top: none;
+  padding-bottom: 6px;
+}
+
+.lbl {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 19px;
+}
+
+.sub {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-left: 14px;
+}
+
+.val {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+
+.incTotal {
+  border-top: 1px solid var(--rule-strong);
+}
+.incTotal .lbl,
+.incTotal .val {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--ink);
+}
+
+.incArb .lbl,
+.incArb .val {
+  color: var(--accent);
+}
+
+/* ---- Metric blocks (Asset right column) ---- */
+.metricBlock {
+  margin-top: 34px;
+}
+.metricLabel {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.metricValue {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 44px;
+  margin-top: 10px;
+}
+.metricUnit {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+/* ---- Arbitrage hero ---- */
+.hero {
+  margin-top: 30px;
+}
+.heroLbl {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.heroNum {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 104px;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  margin-top: 12px;
+}
+.heroUnit {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+  margin-left: 14px;
+}
+
+@media (max-width: 700px) {
+  .heroNum {
+    font-size: 64px;
+  }
+  .heroUnit {
+    font-size: 18px;
+  }
+}
+
+/* ---- Orchestration (Service) ---- */
+.orch {
+  margin-top: 22px;
+  max-width: 900px;
+}
+.orchFlow {
+  display: grid;
+  grid-template-columns: 1fr 2.2fr 1fr;
+  align-items: center;
+  gap: 0;
+}
+.orchNode {
+  padding: 20px 0;
+}
+.orchK {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.orchV {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 22px;
+  margin-top: 8px;
+}
+.orchTime {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 6px;
+}
+.orchMid {
+  padding: 0 24px;
+  position: relative;
+}
+.orchRule {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  text-align: center;
+  margin-bottom: 12px;
+}
+.orchRule b {
+  color: var(--accent);
+  font-weight: 400;
+}
+.orchConn {
+  border-top: 1px solid var(--hairline);
+  position: relative;
+  top: 2px;
+}
+.orchRight {
+  text-align: right;
+}
+.slaLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.sla {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 700px) {
+  .orchFlow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .orchRight {
+    text-align: left;
+  }
+  .orchMid {
+    padding: 0;
+  }
+}

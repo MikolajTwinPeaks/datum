@@ -1,0 +1,24 @@
+.footer {
+  border-top: 1px solid var(--hairline);
+  padding: 22px 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  gap: 16px;
+}
+
+.mark {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  color: var(--ink-2);
+}
+
+.crumb {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-3);
+}
