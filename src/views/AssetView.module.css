@@ -1,0 +1,60 @@
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.specLine {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  margin-top: 12px;
+}
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 22px;
+  padding-bottom: 2px;
+}
+
+.switchItem {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-decoration: none;
+  padding-bottom: 8px;
+}
+.switchItem:hover {
+  color: var(--ink-2);
+}
+.switchActive {
+  color: var(--ink);
+}
+.switchActive::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 22px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.emptyNote {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  padding: 15px 2px;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  margin-top: 18px;
+}

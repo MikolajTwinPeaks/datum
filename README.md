@@ -19,7 +19,7 @@ Vite + React + TypeScript application.
 
 - **Vite** + **React 19** + **TypeScript** (`strict: true`)
 - **react-router-dom** with `HashRouter` (deploys to static hosts with no server config)
-- Self-hosted fonts via **@fontsource** — Space Grotesk, Space Mono, Inter (no CDN, no runtime network calls)
+- Self-hosted fonts via **@fontsource** — Archivo (display + UI), Chivo Mono (figures) (no CDN, no runtime network calls)
 - **CSS custom properties** for design tokens + **CSS Modules** per component
 - **oxlint** (Vite's default linter) + **Prettier**
 
@@ -44,8 +44,8 @@ Requires Node 20.19+ / 22.12+ (any recent LTS works).
 
 - **Instrument / Swiss, light.** A warm bone paper (`#ECE8DE`), near-black ink, and a
   two-step gray scale. No rounded panels, borders, shadows, gradients, colored chips or emoji.
-- **Type.** Space Grotesk for display and hero numbers, Space Mono for telemetry and labels,
-  Inter for running text. Decimals use a period; thousands a thin space.
+- **Type.** Archivo for display, hero numbers and running text; Chivo Mono for all figures,
+  telemetry and labels. Decimals use a period; thousands a thin space.
 - **One accent.** Oxblood (`#9E3B2E`), used ~3× per surface: the ruler marker, one section
   index, and the single most important or alarming value.
 - **The tick-ruler motif.** A row of fine measurement ticks doubles as every gauge — an
@@ -54,13 +54,24 @@ Requires Node 20.19+ / 22.12+ (any recent LTS works).
 - **Ruled ledgers.** Tables are rows separated by full-width hairlines: label left, value
   right in tabular mono. Totals and EBITDA are emphasised by size and weight, never a box.
 
+## Exports
+
+- **CSV** (Reports → Fleet reports): builds a quoted/escaped CSV with `src/lib/csv.ts` and
+  downloads it via a temporary `<a download>` + object URL. Numbers use a period decimal.
+- **PDF** ("Export bank report" on an asset, and Reports → Bank reports): calls
+  `window.print()`. A print-only `BankReport` one-pager (portalled to `<body>`) plus a
+  `@media print` sheet (`src/styles/printing.css`) hide the app chrome and render a clean
+  A4 report on white; the user picks "Save as PDF".
+
 ## Project structure
 
 ```
 src/
   components/   reusable UI (Masthead, Nav, Footer, Ruler, LedgerTable, Kpi,
-                StatusTag, CompositionBar, PriceChart, DispatchChart, TickGauge)
-  views/        FleetView, AssetView, ArbitrageView, ServiceView, ReportsView
+                StatusTag, CompositionBar, PriceChart, DispatchChart,
+                ProductionChart, TickGauge)
+  views/        FleetView, AssetView (per-asset drill-down at /asset/:id),
+                ArbitrageView, ServiceView, ReportsView
   data/         typed mock data (fleet, assets, arbitrage, alarms, integrations)
   hooks/        useClock (live CET clock), useCountdown (SLA timer)
   lib/          SVG geometry + number-formatting helpers

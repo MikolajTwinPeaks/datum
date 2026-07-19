@@ -63,11 +63,11 @@ export function PriceChart({ data, min = 220, max = 840 }: PriceChartProps) {
         x={peakX - 4}
         y={peakY - 10}
         textAnchor="end"
-        fontFamily="Space Mono, monospace"
+        style={{ fontFamily: 'var(--font-mono)' }}
         fontSize={13}
         fill="var(--accent)"
       >
-        {peak} · {peakIndex}h
+        {peak}, {peakIndex}h
       </text>
     </svg>
   );

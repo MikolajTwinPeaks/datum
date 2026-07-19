@@ -1,0 +1,180 @@
+/*
+ * Cover / start screen. Full-bleed spec-sheet on paper.
+ * Instrument / Swiss: huge type as hero, tick-ruler signature, one accent.
+ */
+.page {
+  min-height: 100vh;
+  background: var(--paper-edge);
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+@media (max-width: 1100px) {
+  .page {
+    padding: 14px;
+  }
+}
+@media (max-width: 700px) {
+  .page {
+    padding: 0;
+  }
+}
+
+.sheet {
+  position: relative;
+  width: 100%;
+  max-width: var(--frame-width);
+  background: var(--paper);
+  padding: 0 var(--frame-pad);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 60px);
+}
+
+/* ---- Document header ---- */
+.top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 34px 0 16px;
+  gap: 16px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--ink-2);
+}
+
+.ink {
+  color: var(--ink);
+}
+.ink3 {
+  color: var(--ink-3);
+}
+
+/* ---- Hero ---- */
+.hero {
+  padding: clamp(48px, 9vh, 104px) 0 clamp(40px, 7vh, 80px);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 20px;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(96px, 20vw, 300px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.tagline {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(22px, 3.2vw, 40px);
+  letter-spacing: -0.01em;
+  color: var(--ink-2);
+  margin-top: 22px;
+}
+
+/* ---- Ruler gauge ---- */
+.gauge {
+  margin-top: auto;
+  padding-bottom: 10px;
+}
+
+.gaugeHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.gaugeLabel {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.gaugeValue {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Portfolio spec line ---- */
+.spec {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  padding: 14px 0 24px;
+}
+
+/* ---- Module index ---- */
+.index {
+  display: block;
+}
+
+.row {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--hairline);
+  text-decoration: none;
+  color: var(--ink);
+}
+.row:last-child {
+  border-bottom: 0;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 21px;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+}
+
+.row:hover .label {
+  color: var(--accent);
+}
+
+/* ---- Footer ---- */
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 0 40px;
+  gap: 16px;
+}
+.foot :global(.textlink) {
+  margin-top: 0;
+}
+
+.build {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-3);
+}
+
+@media (max-width: 900px) {
+  .sheet {
+    --frame-pad: 28px;
+  }
+}

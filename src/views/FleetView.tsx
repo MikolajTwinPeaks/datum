@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom';
 import { KpiBand, Kpi } from '../components/Kpi';
 import { TickGauge } from '../components/TickGauge';
+import { Autopilot } from '../components/Autopilot';
 import { LedgerTable, LedgerRow, Cell } from '../components/LedgerTable';
 import { StatusTag, type StatusKind } from '../components/StatusTag';
 import { portfolio, fleetKpis, alarmSummary, fleetPower } from '../data/fleet';
 import { assets, type AssetStatus } from '../data/assets';
+import { fleetAutomation } from '../data/automation';
 import { alarms, type Severity } from '../data/alarms';
 import styles from './views.module.css';
 
@@ -22,8 +25,8 @@ const severityTone: Record<Severity, 'accent' | 'i2' | 'i3'> = {
 export function FleetView() {
   return (
     <section className={styles.view}>
-      <div className="eyebrow">01 · Portfolio</div>
-      <h1 className="view-title">{portfolio.title}</h1>
+      <h1 className="view-title">Portfolio</h1>
+      <div className={styles.specLine}>{portfolio.title}</div>
 
       <KpiBand>
         {fleetKpis.map((kpi) => (
@@ -36,17 +39,29 @@ export function FleetView() {
           />
         ))}
         <Kpi label="Active alarms" value={String(alarmSummary.open)}>
-          {alarmSummary.critical} <span className="accent">critical</span> · {alarmSummary.warning}{' '}
+          {alarmSummary.critical} <span className="accent">critical</span>, {alarmSummary.warning}{' '}
           warning
         </Kpi>
       </KpiBand>
 
+      <Autopilot
+        label="Fleet autopilot"
+        mode="AUTO"
+        strategy="Price optimisation, grid-cap capture, alarm routing"
+        cells={[
+          { k: 'Assets in auto', v: `${fleetAutomation.assetsAuto} / ${fleetAutomation.assetsTotal}` },
+          { k: 'Actions today', v: String(fleetAutomation.actionsToday) },
+          { k: 'Setpoints written', v: String(fleetAutomation.setpointsToday) },
+          { k: 'Alarms routed', v: fleetAutomation.alarmsRouted },
+          { k: 'Clipping captured', v: `${fleetAutomation.clippingCapturedMwh} MWh` },
+        ]}
+        nextInSeconds={fleetAutomation.nextInSeconds}
+        nextAction={`${fleetAutomation.nextAsset}, ${fleetAutomation.nextAction}`}
+      />
+
       <div className="sec">
         <div className="sec-head">
           <div className="sec-title">Fleet power</div>
-          <div className="sec-note">
-            {fleetPower.now} of {fleetPower.installed} MW installed
-          </div>
         </div>
         <hr className="rule" />
         <TickGauge
@@ -72,10 +87,7 @@ export function FleetView() {
 
       <div className="sec">
         <div className="sec-head">
-          <div className="sec-idx">
-            <b>—</b> Assets
-          </div>
-          <div className="sec-note">7 of {portfolio.assetCount} shown</div>
+          <div className="sec-title">Assets</div>
         </div>
         <LedgerTable
           columns="2.4fr 1fr 1fr 1.3fr 1.3fr"
@@ -83,16 +95,20 @@ export function FleetView() {
             { label: 'Asset' },
             { label: 'Power' },
             { label: 'Type' },
-            { label: 'PR · SoC' },
+            { label: 'PR, SoC' },
             { label: 'Status' },
           ]}
         >
           {assets.map((asset) => (
-            <LedgerRow key={asset.name}>
-              <Cell name>{asset.name}</Cell>
-              <Cell tone="ink">{asset.power}</Cell>
+            <LedgerRow key={asset.id}>
+              <Cell name>
+                <Link className="asset-link" to={`/asset/${asset.id}`}>
+                  {asset.name}
+                </Link>
+              </Cell>
+              <Cell tone="ink">{asset.spec.powerMw} MW</Cell>
               <Cell>{asset.type}</Cell>
-              <Cell tone={asset.metricAlarm ? 'accent' : undefined}>{asset.metric}</Cell>
+              <Cell tone={asset.fleetMetricAlarm ? 'accent' : undefined}>{asset.fleetMetric}</Cell>
               <Cell>
                 <StatusTag kind={statusKind[asset.status]} label={asset.status} tick />
               </Cell>
@@ -104,9 +120,6 @@ export function FleetView() {
       <div className="sec">
         <div className="sec-head">
           <div className="sec-title">Active alarms</div>
-          <div className="sec-note">
-            {alarmSummary.open} open · {alarmSummary.critical} critical
-          </div>
         </div>
         <LedgerTable
           columns="1fr 1.6fr 3.4fr 1fr"

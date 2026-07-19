@@ -65,8 +65,14 @@ export function DispatchChart({ soc, chargeHours, dischargeHours }: DispatchChar
         points={socPoints}
       />
 
-      <text x={6} y={16} fontFamily="Space Mono, monospace" fontSize={11} fill="var(--ink-3)">
-        CHARGE (ink) · DISCHARGE (oxblood) · SoC (dashed)
+      <text
+        x={6}
+        y={16}
+        style={{ fontFamily: 'var(--font-mono)' }}
+        fontSize={11}
+        fill="var(--ink-3)"
+      >
+        CHARGE (ink), DISCHARGE (oxblood), SoC (dashed)
       </text>
     </svg>
   );

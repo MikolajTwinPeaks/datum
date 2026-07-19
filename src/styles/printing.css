@@ -1,0 +1,166 @@
+/*
+ * Print styles. On screen the bank report is hidden; when printing we hide the
+ * live app (#root) and lay out a clean A4 one-pager on white.
+ */
+
+.print-report {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm;
+  }
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  /* Hide the live application entirely */
+  #root {
+    display: none !important;
+  }
+
+  .print-report {
+    display: block;
+    color: var(--ink);
+    background: #fff;
+    font-family: var(--font-body);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .pr-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .pr-mark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    font-size: 20px;
+  }
+  .pr-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .pr-rule-strong {
+    border: 0;
+    border-top: 1px solid var(--ink);
+    margin: 10px 0 0;
+  }
+
+  .pr-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 34px;
+    letter-spacing: -0.01em;
+    margin-top: 20px;
+  }
+  .pr-spec {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+    margin-top: 8px;
+  }
+  .pr-period {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    margin-top: 4px;
+  }
+
+  .pr-section-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin-top: 28px;
+    margin-bottom: 6px;
+  }
+
+  .pr-kpis {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .pr-kpi {
+    padding: 12px 10px 12px 0;
+  }
+  .pr-kpi + .pr-kpi {
+    border-left: 1px solid var(--hairline);
+    padding-left: 12px;
+  }
+  .pr-kpi-lbl {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .pr-kpi-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 26px;
+    margin-top: 6px;
+  }
+  .pr-kpi-num span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-2);
+    margin-left: 3px;
+  }
+
+  .pr-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 9px 0;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--font-display);
+    font-size: 14px;
+  }
+  .pr-row span:last-child {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .pr-total {
+    border-top: 1px solid var(--ink);
+    font-weight: 500;
+    font-size: 17px;
+  }
+  .pr-accent {
+    color: var(--accent);
+  }
+
+  .pr-avail {
+    margin-top: 22px;
+    font-family: var(--font-display);
+    font-size: 15px;
+  }
+  .pr-avail b {
+    font-weight: 500;
+  }
+
+  .pr-foot {
+    margin-top: 34px;
+    padding-top: 10px;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+}

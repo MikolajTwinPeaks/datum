@@ -12,7 +12,6 @@ export function Nav() {
           to={route.path}
           className={({ isActive }) => `${styles.item} ${isActive ? styles.active : ''}`}
         >
-          <span className={styles.idx}>{route.index}</span>
           <span className={styles.label}>{route.label}</span>
         </NavLink>
       ))}

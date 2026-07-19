@@ -21,10 +21,15 @@
 
 .head {
   border-top: none;
-  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 12px;
 }
 .head:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid var(--rule-strong);
+}
+/* the header's strong rule replaces the first data row's top hairline */
+.head + .row {
+  border-top: none;
 }
 
 .headCell {

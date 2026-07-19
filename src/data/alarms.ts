@@ -21,6 +21,11 @@ export const alarms: Alarm[] = [
   { time: '09:05', asset: 'Vega 86 MW', note: 'Comms timeout, SYNDIS gateway', severity: 'INFO' },
 ];
 
+/** Open alarms for a given asset (matched by name prefix). */
+export function alarmsForAsset(name: string): Alarm[] {
+  return alarms.filter((alarm) => alarm.asset.startsWith(name));
+}
+
 export interface Orchestration {
   asset: string;
   subsystem: string;
@@ -35,7 +40,7 @@ export const orchestration: Orchestration = {
   asset: 'Corvus',
   subsystem: 'Inverter 3',
   alarmLabel: 'Overtemperature',
-  alarmTime: '14:02 · CRIT',
+  alarmTime: '14:02, CRIT',
   rule: 'critical ↦ Fiix work order + SMS + P&L',
   workOrder: 'Fiix #4821',
   slaSeconds: 3 * 3600 + 47 * 60 + 12,

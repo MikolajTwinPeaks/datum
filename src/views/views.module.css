@@ -1,5 +1,14 @@
 .view {
-  padding-top: 40px;
+  padding-top: 30px;
+}
+
+/* Portfolio / spec caption under a view title */
+.specLine {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+  margin-top: 12px;
 }
 
 /* ---- Income statement ledger (Asset) ---- */

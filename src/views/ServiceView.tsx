@@ -3,7 +3,7 @@ import { StatusTag } from '../components/StatusTag';
 import { useCountdown } from '../hooks/useCountdown';
 import { alarms, orchestration, type Severity } from '../data/alarms';
 import { integrations } from '../data/integrations';
-import { alarmSummary } from '../data/fleet';
+import { automationRules } from '../data/automation';
 import styles from './views.module.css';
 
 const severityTone: Record<Severity, 'accent' | 'i2' | 'i3'> = {
@@ -17,15 +17,11 @@ export function ServiceView() {
 
   return (
     <section className={styles.view}>
-      <div className="eyebrow">04 · Service &amp; orchestration</div>
       <h1 className="view-title">One alarm, one work order, one P&amp;L line</h1>
 
       <div className="sec">
         <div className="sec-head">
           <div className="sec-title">Alarm ledger</div>
-          <div className="sec-note">
-            {alarms.length} of {alarmSummary.open} open
-          </div>
         </div>
         <LedgerTable
           columns="1fr 1.6fr 3.4fr 1fr"
@@ -54,9 +50,6 @@ export function ServiceView() {
       <div className="sec">
         <div className="sec-head">
           <div className="sec-title">Orchestration</div>
-          <div className="sec-note">
-            {orchestration.asset} · {orchestration.subsystem}
-          </div>
         </div>
         <hr className="rule" />
         <div className={styles.orch}>
@@ -68,7 +61,7 @@ export function ServiceView() {
             </div>
             <div className={styles.orchMid}>
               <div className={styles.orchRule}>
-                RULE 07 · <b>{orchestration.rule}</b>
+                RULE 07, <b>{orchestration.rule}</b>
               </div>
               <div className={styles.orchConn} />
             </div>
@@ -86,8 +79,38 @@ export function ServiceView() {
 
       <div className="sec">
         <div className="sec-head">
+          <div className="sec-title">Automation rules</div>
+          <div className="sec-note">armed</div>
+        </div>
+        <LedgerTable
+          columns="0.8fr 2fr 2.4fr 1.4fr 1fr"
+          head={[
+            { label: 'Rule' },
+            { label: 'Trigger' },
+            { label: 'Action' },
+            { label: 'Scope' },
+            { label: 'Fired today', right: true },
+          ]}
+        >
+          {automationRules.map((rule) => (
+            <LedgerRow key={rule.id}>
+              <Cell name size={16}>
+                {rule.id}
+              </Cell>
+              <Cell>{rule.trigger}</Cell>
+              <Cell tone="ink">{rule.action}</Cell>
+              <Cell>{rule.scope}</Cell>
+              <Cell right tone="ink">
+                {rule.firedToday}
+              </Cell>
+            </LedgerRow>
+          ))}
+        </LedgerTable>
+      </div>
+
+      <div className="sec">
+        <div className="sec-head">
           <div className="sec-title">Integrations</div>
-          <div className="sec-note">{integrations.length} systems</div>
         </div>
         <LedgerTable
           columns="2fr 3fr 1.4fr"

@@ -45,7 +45,7 @@ export type CellTone = 'ink' | 'i2' | 'i3' | 'accent';
 
 export interface CellProps {
   children?: ReactNode;
-  /** Render as a Space Grotesk asset/label name instead of mono data. */
+  /** Render as an Archivo asset/label name instead of mono data. */
   name?: boolean;
   right?: boolean;
   tone?: CellTone;
@@ -60,7 +60,7 @@ const toneClass: Record<CellTone, string> = {
   accent: styles.accent,
 };
 
-/** A ledger cell. Mono/tabular by default; `name` switches to Space Grotesk. */
+/** A ledger cell. Mono/tabular by default; `name` switches to Archivo. */
 export function Cell({ children, name = false, right = false, tone, size }: CellProps) {
   const classNames = [
     name ? styles.name : styles.cell,

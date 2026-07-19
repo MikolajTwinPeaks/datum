@@ -3,18 +3,22 @@ import { createRoot } from 'react-dom/client';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Self-hosted fonts (no CDN, no runtime network calls).
-import '@fontsource/space-grotesk/300.css';
-import '@fontsource/space-grotesk/400.css';
-import '@fontsource/space-grotesk/500.css';
-import '@fontsource/space-mono/400.css';
-import '@fontsource/space-mono/700.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
+// Archivo — display + UI; Chivo Mono — all figures / telemetry.
+import '@fontsource/archivo/300.css';
+import '@fontsource/archivo/400.css';
+import '@fontsource/archivo/500.css';
+import '@fontsource/archivo/600.css';
+import '@fontsource/chivo-mono/400.css';
+import '@fontsource/chivo-mono/500.css';
+import '@fontsource/chivo-mono/700.css';
 
 import './styles/tokens.css';
 import './styles/global.css';
+import './styles/printing.css';
 
+import { Boot } from './Boot';
 import { App } from './App';
+import { CoverView } from './views/CoverView';
 import { FleetView } from './views/FleetView';
 import { AssetView } from './views/AssetView';
 import { ArbitrageView } from './views/ArbitrageView';
@@ -28,18 +32,21 @@ if (!root) {
 
 createRoot(root).render(
   <StrictMode>
-    <HashRouter>
+    <Boot>
+      <HashRouter>
       <Routes>
+        <Route index element={<CoverView />} />
         <Route element={<App />}>
-          <Route index element={<Navigate to="/fleet" replace />} />
           <Route path="/fleet" element={<FleetView />} />
-          <Route path="/asset" element={<AssetView />} />
+          <Route path="/asset" element={<Navigate to="/asset/aurora" replace />} />
+          <Route path="/asset/:assetId" element={<AssetView />} />
           <Route path="/arbitrage" element={<ArbitrageView />} />
           <Route path="/service" element={<ServiceView />} />
           <Route path="/reports" element={<ReportsView />} />
           <Route path="*" element={<Navigate to="/fleet" replace />} />
         </Route>
       </Routes>
-    </HashRouter>
+      </HashRouter>
+    </Boot>
   </StrictMode>,
 );

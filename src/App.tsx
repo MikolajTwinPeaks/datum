@@ -9,7 +9,10 @@ import { portfolio } from './data/fleet';
 /** App shell: masthead, numbered nav, the active view, and a footer breadcrumb. */
 export function App() {
   const location = useLocation();
-  const active = routeList.find((route) => route.path === location.pathname) ?? routeList[0];
+  const active =
+    routeList.find(
+      (route) => location.pathname === route.path || location.pathname.startsWith(`${route.path}/`),
+    ) ?? routeList[0];
 
   // Match the demo: return to the top of the page on each view switch.
   useEffect(() => {
@@ -17,15 +20,22 @@ export function App() {
   }, [location.pathname]);
 
   return (
-    <div className="frame">
-      <Masthead assetCount={portfolio.assetCount} />
-      <hr className="rule" />
-      <Nav />
-      <hr className="rule" />
-      <main>
-        <Outlet />
-      </main>
-      <Footer crumb={`${active.label} / ${active.index}–05`} />
+    <div className="page-bg">
+      <div className="frame">
+        <span className="crop tl" />
+        <span className="crop tr" />
+        <span className="crop bl" />
+        <span className="crop br" />
+
+        <Masthead assetCount={portfolio.assetCount} />
+        <hr className="rule-ink" />
+        <Nav />
+        <hr className="rule" />
+        <main>
+          <Outlet />
+        </main>
+        <Footer crumb={active.label} />
+      </div>
     </div>
   );
 }

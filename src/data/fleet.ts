@@ -3,13 +3,11 @@
 export interface PortfolioSummary {
   title: string;
   assetCount: number;
-  markets: number;
 }
 
 export const portfolio: PortfolioSummary = {
-  title: '612 MW PV · 214 MW / 856 MWh BESS · 47 assets · 6 markets',
+  title: '612 MW PV, 214 MW / 856 MWh BESS, 6 hybrid sites, 47 assets',
   assetCount: 47,
-  markets: 6,
 };
 
 export interface FleetKpi {

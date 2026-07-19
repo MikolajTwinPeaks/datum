@@ -17,7 +17,7 @@ export function KpiBand({ children }: { children: ReactNode }) {
   return <div className={styles.band}>{children}</div>;
 }
 
-/** A single KPI cell: mono label, big Space Grotesk number, ruler or footnote. */
+/** A single KPI cell: mono label, big Archivo number, ruler or footnote. */
 export function Kpi({ label, value, unit, fraction, children }: KpiProps) {
   return (
     <div className={styles.kpi}>

@@ -18,10 +18,8 @@ const HOURS = ['00', '06', '12', '18', '24'];
 export function ArbitrageView() {
   return (
     <section className={styles.view}>
-      <div className="eyebrow">03 · Arbitrage · Aurora BESS</div>
-
       <div className={styles.hero}>
-        <div className={styles.heroLbl}>Arbitrage profit · today</div>
+        <div className={styles.heroLbl}>Aurora BESS, arbitrage profit today</div>
         <div className={styles.heroNum}>
           {heroProfit}
           <span className={styles.heroUnit}>PLN</span>
@@ -31,7 +29,7 @@ export function ArbitrageView() {
       <div className="sec">
         <div className="sec-head">
           <div className="sec-title">Day-ahead price</div>
-          <div className="sec-note">PSE rce-pln · PLN/MWh · 24h · peak 810</div>
+          <div className="sec-note">PLN/MWh</div>
         </div>
         <hr className="rule" />
         <div style={{ marginTop: 14 }}>
@@ -47,7 +45,6 @@ export function ArbitrageView() {
       <div className="sec">
         <div className="sec-head">
           <div className="sec-title">Dispatch &amp; state of charge</div>
-          <div className="sec-note">charge 09–14h · discharge 18–21h</div>
         </div>
         <hr className="rule" />
         <div style={{ marginTop: 14 }}>
@@ -68,7 +65,6 @@ export function ArbitrageView() {
         <div>
           <div className="sec-head">
             <div className="sec-title">Dispatch schedule</div>
-            <div className="sec-note">today</div>
           </div>
           <LedgerTable
             columns="1.6fr 1.2fr 1fr 1.3fr 1.1fr"
@@ -100,7 +96,6 @@ export function ArbitrageView() {
         <div>
           <div className="sec-head">
             <div className="sec-title">Storage position</div>
-            <div className="sec-note">SoC now</div>
           </div>
           <hr className="rule" />
           <TickGauge
@@ -112,7 +107,7 @@ export function ArbitrageView() {
                   %
                 </span>{' '}
                 <span className="mono i3" style={{ fontSize: 13 }}>
-                  · {storagePosition.storedMwh} of {storagePosition.capacityMwh} MWh
+                 , {storagePosition.storedMwh} of {storagePosition.capacityMwh} MWh
                 </span>
               </>
             }
