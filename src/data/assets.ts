@@ -645,12 +645,141 @@ const sirius = makePv({
   ],
 });
 
-/** The full fictional fleet universe (11 assets: BESS, hybrids, PV). */
+// ---- generated fleet (fills the portfolio to 47 assets) ------------------
+
+const STD_PV_DEVICES: DeviceStatus[] = [
+  { id: 'Inverter 1', kind: 'inverter', status: 'online', note: 'Nominal' },
+  { id: 'Inverter 2', kind: 'inverter', status: 'online', note: 'Nominal' },
+  { id: 'String block A', kind: 'string', status: 'online', note: 'Nominal' },
+  { id: 'String block B', kind: 'string', status: 'online', note: 'Nominal' },
+];
+
+const STD_HYB_DEVICES: DeviceStatus[] = [
+  { id: 'Inverter block A', kind: 'inverter', status: 'online', note: 'Nominal' },
+  { id: 'Inverter block B', kind: 'inverter', status: 'online', note: 'Nominal' },
+  { id: 'Rack 01–08', kind: 'rack', status: 'online', note: 'Balanced' },
+  { id: 'PCS 1', kind: 'converter', status: 'online', note: 'Nominal' },
+  { id: 'POI controller', kind: 'grid', status: 'online', note: 'Holding export cap' },
+];
+
+/** Compact PV factory: revenue scales with nameplate, standard device set. */
+function qpv(
+  id: string,
+  name: string,
+  mw: number,
+  loc: string,
+  year: string,
+  pr: number,
+  avail: number,
+  f: number,
+): AssetDetail {
+  return makePv({
+    id,
+    name,
+    powerMw: mw,
+    location: loc,
+    commissioned: year,
+    status: 'online',
+    prPct: pr,
+    availabilityPct: avail,
+    actualFactor: f,
+    revenue: { spot: round1(mw * 0.011), ppa: round1(mw * 0.012), goo: round1(mw * 0.003), om: round1(mw * 0.006) },
+    devices: STD_PV_DEVICES,
+  });
+}
+
+/** Compact hybrid factory. */
+function qhy(
+  id: string,
+  name: string,
+  pv: number,
+  bp: number,
+  be: number,
+  cap: number,
+  loc: string,
+  year: string,
+  pr: number,
+  soc: number,
+  avail: number,
+  f: number,
+): AssetDetail {
+  return makeHybrid({
+    id,
+    name,
+    pvPeakMw: pv,
+    bessPowerMw: bp,
+    bessEnergyMwh: be,
+    poiCapMw: cap,
+    location: loc,
+    commissioned: year,
+    prPct: pr,
+    socPct: soc,
+    availabilityPct: avail,
+    actualFactor: f,
+    clippingCapturedMwh: Math.round(pv * 0.3),
+    shiftedMwh: Math.round(pv * 0.28),
+    revenue: {
+      spot: round1(pv * 0.009),
+      ppa: round1(pv * 0.011),
+      arbitrage: round1(bp * 0.03),
+      ancillary: round1(bp * 0.01),
+      om: round1((pv + bp) * 0.004),
+    },
+    actionsToday: Math.round(bp * 0.5),
+    setpointsToday: Math.round(bp * 1.2),
+    devices: STD_HYB_DEVICES,
+  });
+}
+
+const moreHybrids: AssetDetail[] = [
+  qhy('polaris', 'Polaris Hybrid', 110, 55, 110, 85, 'Zachodniopomorskie, PL', '2025', 84, 54, 99.2, 0.85),
+  qhy('alioth', 'Alioth Hybrid', 95, 48, 96, 72, 'Kujawsko-Pomorskie, PL', '2025', 83, 61, 99.0, 0.83),
+  qhy('alkaid', 'Alkaid Hybrid', 80, 40, 80, 60, 'Pomorskie, PL', '2024', 82, 49, 98.9, 0.82),
+];
+
+const morePv: AssetDetail[] = [
+  qpv('altair', 'Altair', 72, 'Wielkopolska, PL', '2023', 84, 99.3, 0.84),
+  qpv('deneb', 'Deneb', 64, 'Łódzkie, PL', '2022', 83, 99.1, 0.82),
+  qpv('capella', 'Capella', 58, 'Mazowieckie, PL', '2021', 82, 98.9, 0.8),
+  qpv('arcturus', 'Arcturus', 88, 'Dolnośląskie, PL', '2024', 85, 99.4, 0.85),
+  qpv('spica', 'Spica', 41, 'Śląskie, PL', '2020', 81, 98.7, 0.79),
+  qpv('regulus', 'Regulus', 76, 'Podkarpackie, PL', '2023', 84, 99.2, 0.83),
+  qpv('bellatrix', 'Bellatrix', 33, 'Lubelskie, PL', '2019', 80, 98.4, 0.78),
+  qpv('mizar', 'Mizar', 69, 'Zachodniopomorskie, PL', '2022', 85, 99.5, 0.85),
+  qpv('castor', 'Castor', 52, 'Kujawsko-Pomorskie, PL', '2021', 82, 98.8, 0.81),
+  qpv('procyon', 'Procyon', 47, 'Lubuskie, PL', '2020', 81, 98.6, 0.8),
+  qpv('fomalhaut', 'Fomalhaut', 91, 'Małopolskie, PL', '2024', 84, 99.3, 0.84),
+  qpv('aldebaran', 'Aldebaran', 28, 'Pomorskie, PL', '2019', 79, 98.2, 0.77),
+  qpv('canopus', 'Canopus', 83, 'Warmińsko-Mazurskie, PL', '2023', 85, 99.4, 0.85),
+  qpv('achernar', 'Achernar', 44, 'Opolskie, PL', '2021', 82, 98.9, 0.81),
+  qpv('hadar', 'Hadar', 60, 'Świętokrzyskie, PL', '2022', 83, 99.0, 0.82),
+  qpv('mira', 'Mira', 37, 'Podlaskie, PL', '2020', 80, 98.5, 0.79),
+  qpv('elnath', 'Elnath', 74, 'Wielkopolska, PL', '2023', 84, 99.2, 0.84),
+  qpv('alnilam', 'Alnilam', 55, 'Łódzkie, PL', '2022', 83, 99.0, 0.82),
+  qpv('alnitak', 'Alnitak', 48, 'Mazowieckie, PL', '2021', 81, 98.7, 0.8),
+  qpv('mintaka', 'Mintaka', 66, 'Dolnośląskie, PL', '2022', 84, 99.3, 0.83),
+  qpv('saiph', 'Saiph', 31, 'Śląskie, PL', '2019', 79, 98.3, 0.78),
+  qpv('nunki', 'Nunki', 79, 'Podkarpackie, PL', '2024', 85, 99.5, 0.85),
+  qpv('atria', 'Atria', 43, 'Lubelskie, PL', '2020', 81, 98.6, 0.8),
+  qpv('menkar', 'Menkar', 57, 'Zachodniopomorskie, PL', '2022', 83, 99.1, 0.82),
+  qpv('naos', 'Naos', 24, 'Kujawsko-Pomorskie, PL', '2019', 78, 98.0, 0.76),
+  qpv('wezen', 'Wezen', 70, 'Lubuskie, PL', '2023', 84, 99.2, 0.84),
+  qpv('adhara', 'Adhara', 50, 'Małopolskie, PL', '2021', 82, 98.8, 0.81),
+  qpv('alphard', 'Alphard', 62, 'Pomorskie, PL', '2022', 83, 99.0, 0.82),
+  qpv('alphecca', 'Alphecca', 39, 'Warmińsko-Mazurskie, PL', '2020', 80, 98.5, 0.79),
+  qpv('kochab', 'Kochab', 85, 'Opolskie, PL', '2024', 85, 99.4, 0.85),
+  qpv('merak', 'Merak', 53, 'Świętokrzyskie, PL', '2022', 82, 98.9, 0.81),
+  qpv('phecda', 'Phecda', 68, 'Podlaskie, PL', '2023', 84, 99.2, 0.83),
+  qpv('dubhe', 'Dubhe', 46, 'Wielkopolska, PL', '2021', 81, 98.7, 0.8),
+];
+
+/** The full fictional fleet (47 assets: 1 BESS, 6 hybrids, 40 PV). */
 export const assets: AssetDetail[] = [
   aurora,
   helios,
   rigel,
   antares,
+  ...moreHybrids,
   vega,
   orion,
   lyra,
@@ -658,19 +787,11 @@ export const assets: AssetDetail[] = [
   pollux,
   draco,
   sirius,
+  ...morePv,
 ];
 
-/** The rows shown in the Fleet ledger preview (8 of 47). */
-export const fleetPreview: AssetDetail[] = [
-  aurora,
-  helios,
-  rigel,
-  vega,
-  orion,
-  lyra,
-  corvus,
-  antares,
-];
+/** Compact preview (first rows), kept for any summary use. */
+export const fleetPreview: AssetDetail[] = assets.slice(0, 8);
 
 export function assetById(id: string | undefined): AssetDetail | undefined {
   return assets.find((asset) => asset.id === id);

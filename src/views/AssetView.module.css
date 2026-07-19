@@ -16,10 +16,21 @@
 
 .switcher {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 22px;
   margin-top: 22px;
-  padding-bottom: 2px;
+  padding-bottom: 10px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.switcher::-webkit-scrollbar {
+  height: 4px;
+}
+.switcher::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+}
+.switchItem {
+  flex: 0 0 auto;
 }
 
 .switchItem {
