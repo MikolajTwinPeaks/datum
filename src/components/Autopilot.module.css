@@ -105,3 +105,28 @@
     padding: 2px 16px;
   }
 }
+
+@media (max-width: 600px) {
+  .band {
+    padding: 22px 0 24px;
+  }
+  .mode {
+    font-size: 38px;
+  }
+  .cells {
+    flex-direction: column;
+  }
+  .cell {
+    width: 100%;
+    border-left: 0;
+    border-top: 1px solid var(--hairline);
+    padding: 12px 0;
+  }
+  .cell:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .next {
+    margin-top: 0;
+  }
+}

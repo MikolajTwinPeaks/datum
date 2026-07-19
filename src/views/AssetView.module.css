@@ -58,3 +58,25 @@
   border-bottom: 1px solid var(--hairline);
   margin-top: 18px;
 }
+
+@media (max-width: 600px) {
+  .header {
+    gap: 14px;
+  }
+  .specLine {
+    font-size: 12px;
+  }
+  .switcher {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 18px;
+  }
+  .switcher::-webkit-scrollbar {
+    display: none;
+  }
+  .switchItem {
+    flex: 0 0 auto;
+  }
+}

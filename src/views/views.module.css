@@ -215,3 +215,28 @@
     padding: 0;
   }
 }
+
+@media (max-width: 600px) {
+  .view {
+    padding-top: 22px;
+  }
+  .specLine {
+    font-size: 12px;
+  }
+  .income {
+    max-width: none;
+  }
+  .lbl {
+    font-size: 17px;
+  }
+  .incTotal .lbl,
+  .incTotal .val {
+    font-size: 20px;
+  }
+  .metricValue {
+    font-size: 34px;
+  }
+  .heroNum {
+    font-size: 58px;
+  }
+}

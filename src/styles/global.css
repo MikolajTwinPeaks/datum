@@ -332,3 +332,28 @@ main {
   letter-spacing: 0.08em;
   margin-top: 4px;
 }
+
+/* ---- Mobile ---- */
+@media (max-width: 600px) {
+  .frame {
+    --frame-pad: 18px;
+    min-height: 100vh;
+  }
+  .view-title {
+    font-size: 30px;
+  }
+  .sec {
+    margin-top: 34px;
+  }
+  .sec-head {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .two-col {
+    gap: 30px;
+  }
+  .textlink {
+    font-size: 16px;
+    margin-top: 24px;
+  }
+}

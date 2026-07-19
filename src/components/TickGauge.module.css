@@ -26,3 +26,9 @@
   letter-spacing: 0.1em;
   margin-top: 6px;
 }
+
+@media (max-width: 600px) {
+  .value {
+    font-size: 30px;
+  }
+}

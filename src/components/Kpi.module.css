@@ -70,3 +70,19 @@
   letter-spacing: 0.06em;
   margin-top: 10px;
 }
+
+@media (max-width: 600px) {
+  .band {
+    padding: 22px 0 24px;
+  }
+  .num {
+    font-size: 38px;
+    margin-top: 12px;
+  }
+  .kpi {
+    padding: 0 14px 0 0;
+  }
+  .label {
+    font-size: 10px;
+  }
+}

@@ -71,3 +71,22 @@
 .accent {
   color: var(--accent);
 }
+
+@media (max-width: 600px) {
+  .ledger {
+    min-width: 520px;
+    margin-top: 14px;
+  }
+  .row {
+    padding: 13px 2px;
+  }
+  .headCell {
+    font-size: 10px;
+  }
+  .cell {
+    font-size: 13px;
+  }
+  .name {
+    font-size: 16px;
+  }
+}
