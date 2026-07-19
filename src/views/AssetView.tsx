@@ -1,4 +1,4 @@
-import { Navigate, NavLink, useParams } from 'react-router-dom';
+import { Navigate, NavLink, Link, useParams } from 'react-router-dom';
 import { KpiBand, Kpi } from '../components/Kpi';
 import { TickGauge } from '../components/TickGauge';
 import { Autopilot } from '../components/Autopilot';
@@ -263,6 +263,9 @@ export function AssetView() {
           <button type="button" className="textlink" onClick={handleExport}>
             Export bank report, PDF
           </button>
+          <Link className="textlink" to={`/control/${asset.id}`} style={{ marginLeft: 28 }}>
+            Dispatch command to O&amp;M
+          </Link>
         </div>
       </div>
 

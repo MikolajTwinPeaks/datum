@@ -10,5 +10,6 @@ export const routeList: RouteMeta[] = [
   { index: '02', label: 'ASSET', path: '/asset' },
   { index: '03', label: 'ARBITRAGE', path: '/arbitrage' },
   { index: '04', label: 'SERVICE', path: '/service' },
-  { index: '05', label: 'REPORTS', path: '/reports' },
+  { index: '05', label: 'CONTROL', path: '/control' },
+  { index: '06', label: 'REPORTS', path: '/reports' },
 ];

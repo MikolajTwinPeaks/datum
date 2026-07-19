@@ -23,6 +23,7 @@ import { FleetView } from './views/FleetView';
 import { AssetView } from './views/AssetView';
 import { ArbitrageView } from './views/ArbitrageView';
 import { ServiceView } from './views/ServiceView';
+import { ControlView } from './views/ControlView';
 import { ReportsView } from './views/ReportsView';
 
 const root = document.getElementById('root');
@@ -42,6 +43,8 @@ createRoot(root).render(
           <Route path="/asset/:assetId" element={<AssetView />} />
           <Route path="/arbitrage" element={<ArbitrageView />} />
           <Route path="/service" element={<ServiceView />} />
+          <Route path="/control" element={<ControlView />} />
+          <Route path="/control/:assetId" element={<ControlView />} />
           <Route path="/reports" element={<ReportsView />} />
           <Route path="*" element={<Navigate to="/fleet" replace />} />
         </Route>
